@@ -1,0 +1,17 @@
+<app-default-login-layout
+    title="Digite o código de verificação"
+    primaryBtnText="Verificar Código"
+    (submit)="verifyCode()"
+    [disablePrimaryBtn]="!codeForm.valid"
+>
+    <form [formGroup]="codeForm">
+        <app-primary-input
+            formControlName="code"
+            inputName="code"
+            type="text"
+            label="Código"
+            placeholder="Digite o código recebido"
+        >
+        </app-primary-input>
+    </form>
+</app-default-login-layout>

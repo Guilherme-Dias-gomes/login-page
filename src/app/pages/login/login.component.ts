@@ -27,6 +27,7 @@ interface LoginForm {
 })
 export class LoginComponent {
   loginForm!: FormGroup<LoginForm>;
+  
 
   constructor(
     private router: Router,
@@ -37,6 +38,10 @@ export class LoginComponent {
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required, Validators.minLength(6)])
     })
+  }
+
+  navigateToForgotPassword() {
+    this.router.navigate(['/forgot-password']);
   }
 
   submit(){
