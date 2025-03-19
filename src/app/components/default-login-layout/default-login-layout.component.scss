@@ -53,14 +53,14 @@ main {
                 width: 100%;
 
                 font-size: 14px;
-                color: $gray-bg;
+                color: $text-color;
                 font-weight: 400;
                 text-transform: uppercase;
 
                 div {
                     flex-grow: 1;
                     height: 2px;
-                    background-color: $gray-bg;
+                    background-color: $text-color;
                 }
             }
 

@@ -44,10 +44,26 @@ export class SignUpComponent {
   }
 
   submit(){
-    this.loginService.signup(this.signupForm.value.name, this.signupForm.value.email, this.signupForm.value.password).subscribe({
-      next: () => this.toastService.success("Login feito com sucesso!"),
-      error: () => this.toastService.error("Erro inesperado! Tente novamente mais tarde")
-    })
+    if(this.signupForm.value.email)
+    
+    if(this.signupForm.value.password == this.signupForm.value.passwordConfirm){
+      this.loginService.signup(this.signupForm.value.name, this.signupForm.value.email, this.signupForm.value.password).subscribe({
+        next: () => {
+          this.toastService.success("Login feito com sucesso!"),
+          this.navigate();
+        },
+        error: (err) => {
+          if(err.status === 409){
+              this.toastService.error("Email já cadastrado! Tente outro.")
+          } else{
+              this.toastService.error("Erro inesperado! Tente novamente mais tarde")
+          }
+
+        }
+      })
+    } else {
+        this.toastService.error("As senhas não coincidem!")
+    }
   }
 
   navigate(){
