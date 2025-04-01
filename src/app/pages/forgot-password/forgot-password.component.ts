@@ -40,10 +40,22 @@ export class ForgotPasswordComponent {
       this.authService.sendPasswordResetCode(email).subscribe({
         next: () => {
           this.toastr.success("Código enviado para seu e-mail!");
-          this.router.navigate(['/verify-code']);
+          this.router.navigate(['verify-code']);
         },
-        error: () => this.toastr.error("Erro ao enviar código. Verifique seu e-mail e tente novamente.")
+        error: (err) => {
+          if(err.status === 404){
+              this.toastr.error("Email não cadastrado! Tente outro.")
+          } else{
+              this.toastr.error("Erro inesperado! Tente novamente mais tarde")
+          }
+
+        }
       });
+      
     }
   }
+  navigate(){
+    this.router.navigate(["login"])
+  }
 }
+

@@ -13,4 +13,11 @@ form {
         color: $secondary-color;
         text-align: end;
     }
+
+    button{
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+    }
+
 }

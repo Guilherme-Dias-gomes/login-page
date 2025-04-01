@@ -7,7 +7,7 @@ import { LoginService } from '../../services/login.service';
 @Component({
   selector: 'app-verify-code',
   templateUrl: './verify-code.component.html',
-  styleUrls: ['./verify-code.component.css']
+  
 })
 export class VerifyCodeComponent {
   verifyCodeForm: FormGroup;

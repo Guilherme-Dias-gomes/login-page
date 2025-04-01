@@ -4,6 +4,7 @@ import { SignUpComponent } from './pages/signup/signup.component';
 import { UserComponent } from './pages/user/user.component';
 import { AuthGuard } from './services/auth-guard.service';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
+import { VerifyCodeComponent } from './pages/verify-code/verify-code.component';
 
 export const routes: Routes = [
     {
@@ -22,5 +23,9 @@ export const routes: Routes = [
     {
         path: "forgot-password",
         component: ForgotPasswordComponent
+    },
+    {
+        path: "verify-code",
+        component: VerifyCodeComponent
     }
 ];

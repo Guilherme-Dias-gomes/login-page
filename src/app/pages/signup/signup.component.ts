@@ -49,8 +49,8 @@ export class SignUpComponent {
     if(this.signupForm.value.password == this.signupForm.value.passwordConfirm){
       this.loginService.signup(this.signupForm.value.name, this.signupForm.value.email, this.signupForm.value.password).subscribe({
         next: () => {
-          this.toastService.success("Login feito com sucesso!"),
-          this.navigate();
+          this.toastService.success("Cadastro feito com sucesso!"),
+          this.router.navigate(["login"]);
         },
         error: (err) => {
           if(err.status === 409){
