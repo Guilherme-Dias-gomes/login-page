@@ -31,29 +31,29 @@ export class ForgotPasswordComponent {
 
   sendResetCode() {
     if (this.forgotPasswordForm.valid) {
-      const email = this.forgotPasswordForm.value.email;
-      if (!email) {
-        this.toastr.error("Por favor, insira um e-mail válido.");
-        return;
-      }
-
-      this.authService.sendPasswordResetCode(email).subscribe({
-        next: () => {
-          this.toastr.success("Código enviado para seu e-mail!");
-          this.router.navigate(['verify-code']);
-        },
-        error: (err) => {
-          if(err.status === 404){
-              this.toastr.error("Email não cadastrado! Tente outro.")
-          } else{
-              this.toastr.error("Erro inesperado! Tente novamente mais tarde")
-          }
-
+        const email = this.forgotPasswordForm.value.email;
+        if (!email) {
+            this.toastr.error("Por favor, insira um e-mail válido.");
+            return;
         }
-      });
-      
+
+        this.authService.sendPasswordResetCode(email).subscribe({
+            next: () => {
+                sessionStorage.setItem("reset-email", email); // 🔹 Salva o e-mail no sessionStorage
+                this.toastr.success("Código enviado para seu e-mail!");
+                this.router.navigate(['verify-code']); // 🔹 Agora navega para a tela de verificação
+            },
+            error: (err) => {
+                if (err.status === 404) {
+                    this.toastr.error("E-mail não cadastrado! Tente outro.");
+                } else {
+                    this.toastr.error("Erro inesperado! Tente novamente mais tarde.");
+                }
+            }
+        });
     }
-  }
+}
+
   navigate(){
     this.router.navigate(["login"])
   }

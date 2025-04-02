@@ -1,1 +1,23 @@
-<h1>teste</h1>
+<app-default-login-layout
+  title="Verificação de Código"
+  primaryBtnText="Confirmar Código"
+  secondaryBtnText="Voltar"
+  (submit)="verifyCode()"
+  (navigate)="navigate()"
+  [disablePrimaryBtn]="!verifyCodeForm.valid"
+>
+  <form [formGroup]="verifyCodeForm" class="code-inputs">
+    <div class="code-container">
+      <input
+        *ngFor="let digit of codeDigits; let i = index"
+        type="text"
+        maxlength="1"
+        pattern="[0-9]"
+        class="code-input"
+        [formControlName]="'digit' + i"
+        (input)="handleInput($event, i)"
+        (keydown)="handleKeydown($event, i)"
+      />
+    </div>
+  </form>
+</app-default-login-layout>
