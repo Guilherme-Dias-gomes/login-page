@@ -40,7 +40,14 @@ export class LoginService {
   }
 
   // 🔹 Redefinir senha
-  resetPassword(email: string, newPassword: string) {
-    return this.httpClient.post(`${this.apiUrl}/reset-password`, { email, newPassword });
-  }  
+  resetPassword(email: string, password: string, passwordConfirm: string, resetCode: string) {
+    return this.httpClient.post(`${this.apiUrl}/reset-password`, {
+      email,
+      password,
+      passwordConfirm,
+      resetCode 
+    });
+  }
+  
+  
 }

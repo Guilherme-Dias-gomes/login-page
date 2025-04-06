@@ -59,9 +59,8 @@ export class VerifyCodeComponent {
   // Verifica o código ao clicar no botão
   verifyCode() {
     if (this.verifyCodeForm.valid) {
-      
-      const email = sessionStorage.getItem("reset-email"); // Pegando o e-mail salvo
-      const code = Object.values(this.verifyCodeForm.value).join(""); // Junta os 6 dígitos
+      const email = sessionStorage.getItem("reset-email");
+      const code = Object.values(this.verifyCodeForm.value).join("");
   
       if (!email) {
         this.toastr.error("Erro: Email não encontrado. Tente novamente.");
@@ -70,19 +69,21 @@ export class VerifyCodeComponent {
   
       this.authService.verifyResetCode(email, code).subscribe({
         next: () => {
+          sessionStorage.setItem("reset-code", code); // 🔹 Salva o código
           this.toastr.success("Código verificado! Redefina sua senha.");
           this.router.navigate(['/reset-password']);
         },
         error: (err) => {
           if (err.status === 403) {
-              this.toastr.error("Código inválido! Tente novamente.");
+            this.toastr.error("Código inválido! Tente novamente.");
           } else {
-              this.toastr.error("Erro inesperado! Tente novamente mais tarde.");
+            this.toastr.error("Erro inesperado! Tente novamente mais tarde.");
           }
-      }
+        }
       });
     }
   }
+  
   navigate(){
     this.router.navigate(["forgot-password"])
   }
