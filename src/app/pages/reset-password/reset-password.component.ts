@@ -65,10 +65,12 @@ export class ResetPasswordComponent {
         error: (err) => {
           if (err.status === 400) {
             this.toastr.error("As senhas não coincidem!");
+          } else if (err.status === 401) {
+            this.toastr.error(err.error); // <- mostra a mensagem vinda do back!
           } else {
             this.toastr.error("Erro inesperado! Tente novamente mais tarde.");
           }
-        }
+        }        
       });
     }
   }

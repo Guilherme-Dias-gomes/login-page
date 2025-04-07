@@ -45,9 +45,8 @@ export class LoginService {
       email,
       password,
       passwordConfirm,
-      resetCode 
+      code: resetCode
     });
   }
-  
   
 }
