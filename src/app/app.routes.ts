@@ -6,6 +6,7 @@ import { AuthGuard } from './services/auth-guard.service';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 import { VerifyCodeComponent } from './pages/verify-code/verify-code.component';
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 export const routes: Routes = [
     {
@@ -32,5 +33,10 @@ export const routes: Routes = [
     {
         path: "reset-password",
         component: ResetPasswordComponent
-    }
+    },
+    {
+        path: '**',
+        component: NotFoundComponent 
+      }
+      
 ];
